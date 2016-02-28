@@ -24,6 +24,16 @@ class TrackTestCase(AlbumsSongsBase):
         self.raw_room = self.doc.find('.//{http://xspf.org/ns/0/}track[2]')
         self.room = Track(self.raw_room)
 
+    def test_repr(self):
+        self.assertEqual(
+            repr(self.coins), '<Track(Passenger - Coins In A Fountain)>',
+            'repr misformed')
+
+    def test_str(self):
+        self.assertEqual(
+            str(self.coins), 'Track(Passenger - Coins In A Fountain)',
+            'String representation misformed')
+
     def test_title(self):
         self.assertEqual(
             self.coins.title, 'Coins In A Fountain',

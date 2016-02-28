@@ -17,6 +17,13 @@ class Track(object):
         self.track_elem = track_elem
         self._parse()
 
+    def __repr__(self):
+        return '<{0}>'.format(str(self))
+
+    def __str__(self):
+        return 'Track({creator_name} - {title})'.format(
+            creator_name=self.creator_name, title=self.title)
+
     def _parse(self):
         """Parse all properties of the given track."""
         self.title = self._extract_title()
