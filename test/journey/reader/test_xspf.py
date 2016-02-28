@@ -3,7 +3,7 @@ from pathlib import Path
 import unittest
 from xml.etree import ElementTree
 
-from journey.reader.favorites import albums_songs
+from journey.reader.xspf import Track, XSPF
 
 
 class AlbumsSongsBase(unittest.TestCase):
@@ -11,18 +11,18 @@ class AlbumsSongsBase(unittest.TestCase):
         self.fixtures_path = Path(__file__).parent / 'fixtures'
         self.albums_songs_path = (
             self.fixtures_path / 'favorites_albumsandsongs.xspf')
-        self.xspf = ElementTree.parse(str(self.albums_songs_path))
+        self.doc = ElementTree.parse(str(self.albums_songs_path))
 
 
 class TrackTestCase(AlbumsSongsBase):
     def setUp(self, *args, **kwargs):
         super(self.__class__, self).setUp(*args, **kwargs)
 
-        self.raw_coins = self.xspf.find('.//{http://xspf.org/ns/0/}track[1]')
-        self.coins = albums_songs.Track(self.raw_coins)
+        self.raw_coins = self.doc.find('.//{http://xspf.org/ns/0/}track[1]')
+        self.coins = Track(self.raw_coins)
 
-        self.raw_room = self.xspf.find('.//{http://xspf.org/ns/0/}track[2]')
-        self.room = albums_songs.Track(self.raw_room)
+        self.raw_room = self.doc.find('.//{http://xspf.org/ns/0/}track[2]')
+        self.room = Track(self.raw_room)
 
     def test_title(self):
         self.assertEqual(
@@ -60,28 +60,27 @@ class TrackTestCase(AlbumsSongsBase):
             'ISRCs improperly parsed')
 
 
-class AlbumsSongsExtractorTestCase(AlbumsSongsBase):
+class XSPFTestCase(AlbumsSongsBase):
     def setUp(self, *args, **kwargs):
         super(self.__class__, self).setUp(*args, **kwargs)
-        self.extractor = albums_songs.AlbumsSongsExtractor(
-            self.albums_songs_path)
+        self.xspf = XSPF(self.albums_songs_path)
 
     def test_xspf_loaded(self):
         self.assertIsInstance(
-            self.extractor.xspf, ElementTree.ElementTree,
+            self.xspf._doc, ElementTree.ElementTree,
             'XSPF not properly loaded')
 
     def test_tracks(self):
         self.assertEqual(
-            len(self.extractor.tracks()), 6,
+            len(self.xspf.tracks()), 6,
             'Not all tracks extracted')
 
     def test_parse_tracks(self):
         self.assertEqual(
-            len(self.extractor._parse_tracks(self.xspf)), 6,
+            len(self.xspf._parse_tracks(self.doc)), 6,
             'Not all tracks extracted')
 
     def test_first_track(self):
         self.assertEqual(
-            self.extractor.tracks()[0].title, 'Coins In A Fountain',
+            self.xspf.tracks()[0].title, 'Coins In A Fountain',
             'First track improperly parsed')

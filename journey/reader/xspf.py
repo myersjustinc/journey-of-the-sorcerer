@@ -59,7 +59,8 @@ class Track(object):
             './xspf:meta[@rel="https://rdio.com/xspf/t/isrcs"]', xspf_ns)
         return tuple([isrc_elem.text for isrc_elem in isrc_elems])
 
-class AlbumsSongsExtractor(object):
+
+class XSPF(object):
     """
     Expose album/song information from a given Rdio XSPF export file.
 
@@ -67,18 +68,18 @@ class AlbumsSongsExtractor(object):
     xspf_path    -- A path (pathlib.Path or str) to a XSPF file to load.
     """
     def __init__(self, xspf_path):
-        self.xspf = ElementTree.parse(str(xspf_path))
+        self._doc = ElementTree.parse(str(xspf_path))
 
     def tracks(self):
         """Extract track information from our XSPF file."""
-        return self._parse_tracks(self.xspf)
+        return self._parse_tracks(self._doc)
 
-    def _parse_tracks(self, xspf):
+    def _parse_tracks(self, doc):
         """
         Return a dict for each track in the given XSPF file.
 
         Positional arguments:
-        xspf -- An ElementTree representing an XSPF document.
+        doc  -- An ElementTree representing an XSPF document.
         """
-        raw_tracks = xspf.findall('./xspf:trackList/xspf:track', xspf_ns)
+        raw_tracks = doc.findall('./xspf:trackList/xspf:track', xspf_ns)
         return [Track(raw_track) for raw_track in raw_tracks]
