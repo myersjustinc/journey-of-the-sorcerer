@@ -80,6 +80,11 @@ class XSPFTestCase(AlbumsSongsBase):
             self.xspf._doc, ElementTree.ElementTree,
             'XSPF not properly loaded')
 
+    def test_title(self):
+        self.assertEqual(
+            self.xspf.title(), 'Favorites of Alice',
+            'Title improperly extracted')
+
     def test_tracks(self):
         self.assertEqual(
             len(self.xspf.tracks()), 6,
