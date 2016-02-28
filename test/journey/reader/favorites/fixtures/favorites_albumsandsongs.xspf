@@ -1,0 +1,62 @@
+<playlist xmlns="http://xspf.org/ns/0/" version="1">
+  <title>Favorites of Alice</title>
+  <creator>Alice</creator>
+  <meta rel="https://rdio.com/xspf/length">6</meta>
+  <meta rel="https://rdio.com/xspf/name">Favorites of Alice</meta>
+  <meta rel="https://rdio.com/xspf/owner">Alice</meta>
+  <meta rel="https://rdio.com/xspf/ownerKey">foo</meta>
+  <meta rel="https://rdio.com/xspf/ownerUrl">/people/alice/</meta>
+  <meta rel="https://rdio.com/xspf/playlist_directory">1_favorites</meta>
+  <meta rel="https://rdio.com/xspf/playlist_type">None</meta>
+  <meta rel="https://rdio.com/xspf/url">/people/alice/playlists/foo/favorites_albumsandsongs</meta>
+  <trackList>
+    <track>
+      <title>Coins In A Fountain</title>
+      <creator>Passenger</creator>
+      <album>Whispers (Deluxe)</album>
+      <trackNum>1</trackNum>
+      <duration>182000</duration>
+      <meta rel="https://rdio.com/xspf/t/isrcs">GBMQN1400001</meta>
+    </track>
+    <track>
+      <title>The Room Where It Happens</title>
+      <creator>Leslie Odom, Jr., Lin-Manuel Miranda, Daveed Diggs, Okieriete Onaodowan, Original Broadway Cast of Hamilton</creator>
+      <album>Hamilton (Original Broadway Cast Recording)</album>
+      <trackNum>28</trackNum>
+      <duration>318000000</duration>
+      <meta rel="https://rdio.com/xspf/t/isrcs">USAT21502623</meta>
+    </track>
+    <track>
+      <title>Vad Dom än Säger</title>
+      <creator>Movits!</creator>
+      <album>Out Of My Head</album>
+      <trackNum>1</trackNum>
+      <duration>196000000</duration>
+      <meta rel="https://rdio.com/xspf/t/isrcs">SEVLE1100201</meta>
+    </track>
+    <track>
+      <title>Lips Are Movin</title>
+      <creator>Meghan Trainor</creator>
+      <album>Title (Deluxe)</album>
+      <trackNum>11</trackNum>
+      <duration>183000000</duration>
+      <meta rel="https://rdio.com/xspf/t/isrcs">USSM11408349</meta>
+    </track>
+    <track>
+      <title>M1 A1</title>
+      <creator>Gorillaz</creator>
+      <album>Gorillaz</album>
+      <trackNum>15</trackNum>
+      <duration>241000000</duration>
+      <meta rel="https://rdio.com/xspf/t/isrcs">GBAYE0001458</meta>
+    </track>
+    <track>
+      <title>Eple (Original Edit)</title>
+      <creator>Röyksopp</creator>
+      <album>Melody AM</album>
+      <trackNum>2</trackNum>
+      <duration>216000</duration>
+      <meta rel="https://rdio.com/xspf/t/isrcs">GBCFC0100018</meta>
+    </track>
+  </trackList>
+</playlist>
