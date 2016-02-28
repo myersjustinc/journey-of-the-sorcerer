@@ -62,7 +62,7 @@ class Track(object):
 
 class XSPF(object):
     """
-    Expose album/song information from a given Rdio XSPF export file.
+    Expose song information from a given Rdio XSPF export file.
 
     Positional arguments:
     xspf_path    -- A path (pathlib.Path or str) to a XSPF file to load.
