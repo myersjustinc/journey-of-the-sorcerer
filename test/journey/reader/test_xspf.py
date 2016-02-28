@@ -6,15 +6,14 @@ from xml.etree import ElementTree
 from journey.reader.xspf import Track, XSPF
 
 
-class AlbumsSongsBase(unittest.TestCase):
+class XSPFBase(unittest.TestCase):
     def setUp(self):
         self.fixtures_path = Path(__file__).parent / 'fixtures'
-        self.albums_songs_path = (
-            self.fixtures_path / 'favorites_albumsandsongs.xspf')
-        self.doc = ElementTree.parse(str(self.albums_songs_path))
+        self.xspf_path = self.fixtures_path / 'favorites_albumsandsongs.xspf'
+        self.doc = ElementTree.parse(str(self.xspf_path))
 
 
-class TrackTestCase(AlbumsSongsBase):
+class TrackTestCase(XSPFBase):
     def setUp(self, *args, **kwargs):
         super(self.__class__, self).setUp(*args, **kwargs)
 
@@ -70,10 +69,10 @@ class TrackTestCase(AlbumsSongsBase):
             'ISRCs improperly parsed')
 
 
-class XSPFTestCase(AlbumsSongsBase):
+class XSPFTestCase(XSPFBase):
     def setUp(self, *args, **kwargs):
         super(self.__class__, self).setUp(*args, **kwargs)
-        self.xspf = XSPF(self.albums_songs_path)
+        self.xspf = XSPF(self.xspf_path)
 
     def test_xspf_loaded(self):
         self.assertIsInstance(
