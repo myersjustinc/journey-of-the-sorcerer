@@ -77,6 +77,12 @@ class XSPF(object):
     def __init__(self, xspf_path):
         self._doc = ElementTree.parse(str(xspf_path))
 
+    def __repr__(self):
+        return '<{0}>'.format(str(self))
+
+    def __str__(self):
+        return 'XSPF({title})'.format(title=self.title())
+
     def title(self):
         """Extract this file's title (i.e., playlist title)."""
         return self._doc.find('./xspf:title', xspf_ns).text

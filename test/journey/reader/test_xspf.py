@@ -74,6 +74,16 @@ class XSPFTestCase(XSPFBase):
         super(self.__class__, self).setUp(*args, **kwargs)
         self.xspf = XSPF(self.xspf_path)
 
+    def test_repr(self):
+        self.assertEqual(
+            repr(self.xspf), '<XSPF(Favorites of Alice)>',
+            'repr misformed')
+
+    def test_str(self):
+        self.assertEqual(
+            str(self.xspf), 'XSPF(Favorites of Alice)',
+            'String representation misformed')
+
     def test_xspf_loaded(self):
         self.assertIsInstance(
             self.xspf._doc, ElementTree.ElementTree,
