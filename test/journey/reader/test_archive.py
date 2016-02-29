@@ -14,3 +14,13 @@ class ArchiveTestCase(unittest.TestCase):
         self.assertTrue(
             hasattr(self.archive, '_zip'),
             'ZIP not loaded')
+
+    def test_favorites(self):
+        self.assertEqual(
+            len(self.archive.favorites().tracks()), 6,
+            'Favorites counted incorrectly')
+
+    def test_playlists(self):
+        self.assertEqual(
+            len(self.archive.playlists()), 1,
+            'Playlists counted incorrectly')
