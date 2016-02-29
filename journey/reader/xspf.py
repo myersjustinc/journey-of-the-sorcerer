@@ -72,10 +72,14 @@ class XSPF(object):
     Expose song information from a given Rdio XSPF export file.
 
     Positional arguments:
-    xspf_path    -- A path (pathlib.Path or str) to a XSPF file to load.
+    xspf_path    -- A path (pathlib.Path or str) to a XSPF file to load, or a
+                    file-like object containing such a file.
     """
     def __init__(self, xspf_path):
-        self._doc = ElementTree.parse(str(xspf_path))
+        if hasattr(xspf_path, 'read'):
+            self._doc = ElementTree.parse(xspf_path)
+        else:
+            self._doc = ElementTree.parse(str(xspf_path))
 
     def __repr__(self):
         return '<{0}>'.format(str(self))

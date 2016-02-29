@@ -2,6 +2,7 @@ from datetime import timedelta
 from pathlib import Path
 import unittest
 from xml.etree import ElementTree
+from zipfile import ZipFile
 
 from journey.reader.xspf import Track, XSPF
 
@@ -108,3 +109,31 @@ class XSPFTestCase(XSPFBase):
         self.assertEqual(
             self.xspf.tracks()[0].title, 'Coins In A Fountain',
             'First track improperly parsed')
+
+
+class XSPFLoadingTestCase(XSPFBase):
+    def test_path_instance(self):
+        xspf = XSPF(self.xspf_path)
+        self.assertTrue(
+            hasattr(xspf, '_doc'),
+            'pathlib.Path instance not properly parsed')
+
+    def test_path_string(self):
+        xspf = XSPF(str(self.xspf_path))
+        self.assertTrue(
+            hasattr(xspf, '_doc'),
+            'String path not properly parsed')
+
+    def test_file_object(self):
+        with self.xspf_path.open() as input_file:
+            xspf = XSPF(input_file)
+        self.assertTrue(
+            hasattr(xspf, '_doc'),
+            'File object not properly parsed')
+
+    def test_zip_content(self):
+        zip_file = ZipFile(str(self.fixtures_path / 'export.zip'))
+        xspf = XSPF(zip_file.open('1_favorites/favorites_albumsandsongs.xspf'))
+        self.assertTrue(
+            hasattr(xspf, '_doc'),
+            'File object not properly parsed')
