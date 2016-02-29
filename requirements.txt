@@ -1,4 +1,6 @@
 pep8==1.7.0
 pyflakes==1.0.0
 requests==2.9.1
+six==1.10.0
 wheel==0.26.0
+wsgi-intercept==1.1.2
